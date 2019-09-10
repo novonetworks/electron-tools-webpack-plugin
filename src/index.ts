@@ -5,6 +5,7 @@ import spawn from 'cross-spawn'
 interface Options {
     readonly main: string
     readonly args?: string[]
+    readonly isDebug?: boolean
 }
 
 const isDevelopment = process.env.NODE_ENV === 'development'
@@ -15,10 +16,12 @@ export class ElectronToolsWebpackPlugin implements Plugin {
     private eProcess: any
 
     constructor(options: Options) {
+        this.log(`constructor: ${{ options }}`)
         Object.assign(this.config, options)
     }
 
     public apply(compiler: Compiler): void {
+        this.log(`apply: ${{ compiler }}`)
         this.compiler = compiler
         if (isDevelopment) {
             this.afterEmit()
@@ -27,12 +30,14 @@ export class ElectronToolsWebpackPlugin implements Plugin {
         }
     }
     private afterEmit(): void {
+        this.log('afterEmit')
         this.compiler.hooks.afterEmit.tap(
             ElectronToolsWebpackPlugin.name,
             this.startElectron,
         )
     }
     private done(): void {
+        this.log('done')
         this.compiler.hooks.afterEmit.tap(
             ElectronToolsWebpackPlugin.name,
             this.buildElectron,
@@ -40,6 +45,7 @@ export class ElectronToolsWebpackPlugin implements Plugin {
     }
 
     private startElectron = (compilation: webpack.compilation.Compilation) => {
+        this.log('startElectron')
         if (!this.config.main || this.eProcess) {
             return
         }
@@ -51,11 +57,19 @@ export class ElectronToolsWebpackPlugin implements Plugin {
         })
 
         this.eProcess.on('SIGINT', () => {
+            this.log('SIGINT')
             process.exit(0)
         })
     }
 
-    private buildElectron = async () => await build()
+    private buildElectron = async () => {
+        this.log('buildElectron')
+        await build()
+    }
+
+    private log = (message?: any, ...optionalParams: any[]): void => {
+        this.config.isDebug && console.log(message, optionalParams)
+    }
 }
 
 // noinspection JSUnusedGlobalSymbols

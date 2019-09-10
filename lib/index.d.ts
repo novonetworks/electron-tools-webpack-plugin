@@ -2,6 +2,7 @@ import { Plugin, Compiler } from 'webpack'
 interface Options {
     readonly main: string
     readonly args?: string[]
+    readonly isDebug?: boolean
 }
 export declare class ElectronToolsWebpackPlugin implements Plugin {
     private compiler
@@ -13,5 +14,6 @@ export declare class ElectronToolsWebpackPlugin implements Plugin {
     private done
     private startElectron
     private buildElectron
+    private log
 }
 export default ElectronToolsWebpackPlugin
