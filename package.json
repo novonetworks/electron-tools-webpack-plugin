@@ -1,7 +1,7 @@
 {
     "name": "electron-tools-webpack-plugin",
     "version": "1.1.0",
-    "description": "Typescript Project",
+    "description": "electron-tools-webpack-plugin",
     "repository": "https://github.com/novonetworks/electron-tools-webpack-plugin",
     "author": "Ryan Yang",
     "license": "MIT",
@@ -21,9 +21,7 @@
     "jest": {
         "preset": "ts-jest",
         "testEnvironment": "node",
-        "collectCoverageFrom": [
-            "src/**/*.{js,jsx,ts,tsx}"
-        ],
+        "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}"],
         "moduleNameMapper": {
             "^~/(.*)$": "<rootDir>/src/$1"
         }
@@ -34,15 +32,8 @@
         }
     },
     "lint-staged": {
-        "*.{ts,tsx}": [
-            "prettier --write",
-            "eslint --fix",
-            "git add"
-        ],
-        "*.{json,css}": [
-            "prettier --write",
-            "git add"
-        ]
+        "*.{ts,tsx}": ["prettier --write", "eslint --fix", "git add"],
+        "*.{json,css}": ["prettier --write", "git add"]
     },
     "eslintConfig": {
         "parser": "@typescript-eslint/parser",
@@ -50,10 +41,7 @@
             "project": "./tsconfig.json",
             "tsconfigRootDir": "."
         },
-        "plugins": [
-            "@typescript-eslint",
-            "prettier"
-        ],
+        "plugins": ["@typescript-eslint", "prettier"],
         "rules": {
             "prettier/prettier": "error",
             "ban-ts-ignore": 0,
@@ -70,11 +58,7 @@
             "prettier/@typescript-eslint"
         ]
     },
-    "eslintIgnore": [
-        "node_modules/**/*",
-        "lib/**/*",
-        "wallaby.js"
-    ],
+    "eslintIgnore": ["node_modules/**/*", "lib/**/*", "wallaby.js"],
     "prettier": {
         "parser": "typescript",
         "trailingComma": "all",
@@ -82,9 +66,7 @@
         "singleQuote": true,
         "overrides": [
             {
-                "files": [
-                    "*.json"
-                ],
+                "files": ["*.json"],
                 "options": {
                     "parser": "json"
                 }
@@ -92,8 +74,11 @@
         ]
     },
     "devDependencies": {
+        "@types/cross-spawn": "^6.0.0",
+        "@types/electron-builder": "^2.8.0",
         "@types/jest": "^24.0.18",
         "@types/node": "^12.7.4",
+        "@types/webpack": "^4.39.1",
         "@typescript-eslint/eslint-plugin": "^2.1.0",
         "@typescript-eslint/parser": "^2.1.0",
         "coverage": "^0.4.1",
@@ -120,7 +105,12 @@
         "tslib": "^1.10.0",
         "typescript": "^3.6.2"
     },
-    "files": [
-        "lib"
-    ]
+    "files": ["lib"],
+    "peerDependencies": {
+        "webpack": "^4.39.3"
+    },
+    "dependencies": {
+        "cross-spawn": "^7.0.0",
+        "electron-builder": "^21.2.0"
+    }
 }

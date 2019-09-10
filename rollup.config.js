@@ -40,4 +40,5 @@ export default {
         resolve(),
         commonjs(),
     ],
+    external: ['webpack', 'cross-spawn', 'electron-builder'],
 }
