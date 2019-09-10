@@ -51,7 +51,9 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
             return
         }
         const existsAt = compilation.assets[this.config.main].existsAt
-        const args = [existsAt].concat(this.config.args)
+        const args = this.config.args
+            ? [existsAt].concat(this.config.args)
+            : [existsAt]
         this.eProcess = spawn('electron', args, {
             env: process.env,
             stdio: 'inherit',
