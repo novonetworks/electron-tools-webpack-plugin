@@ -59,25 +59,8 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
             stdio: 'inherit',
         })
 
-        this.eProcess.on('close', (code: number, signal: string): void => {
-            this.log(`close code: ${code}, signal: ${signal}`)
-            process.kill(process.pid, signal)
-        })
-
-        this.eProcess.on('disconnect', (): void => {
-            this.log('disconnect')
-        })
-
-        this.eProcess.on('error', (): void => {
-            this.log('error')
-        })
-
         this.eProcess.on('exit', (): void => {
-            this.log('exit')
-        })
-
-        this.eProcess.on('message', (): void => {
-            this.log('message')
+            process.exit(0)
         })
     }
 
