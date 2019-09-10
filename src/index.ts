@@ -17,8 +17,8 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
     private eProcess: any
 
     constructor(options: Options) {
-        this.log(`constructor: ${{ options }}`)
         Object.assign(this.config, options)
+        this.log(`constructor: ${{ options }}`)
     }
 
     public apply(compiler: Compiler): void {
