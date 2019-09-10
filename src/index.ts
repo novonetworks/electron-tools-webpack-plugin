@@ -59,10 +59,14 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
             stdio: 'inherit',
         })
 
-        this.eProcess.on('SIGINT', () => {
-            this.log('SIGINT')
-            process.exit(0)
-        })
+        const disposable = this.eProcess.on(
+            'close',
+            (code: number, signal: string): void => {
+                this.log(`code: ${code}, signal: ${signal}`)
+                disposable()
+                process.kill(process.pid, signal)
+            },
+        )
     }
 
     private buildElectron = async () => {
