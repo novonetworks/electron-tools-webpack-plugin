@@ -67,6 +67,34 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
                 process.kill(process.pid, signal)
             },
         )
+
+        /*
+        once(event: "close", listener: (code: number, signal: string) => void): this;
+        once(event: "disconnect", listener: () => void): this;
+        once(event: "error", listener: (err: Error) => void): this;
+        once(event: "exit", listener: (code: number | null, signal: string | null) => void): this;
+        once(event: "message", listener: (message: any, sendHandle: net.Socket | net.Server) => void): this;
+         */
+
+        this.eProcess.on('close', (): void => {
+            this.log('close')
+        })
+
+        this.eProcess.on('disconnect', (): void => {
+            this.log('disconnect')
+        })
+
+        this.eProcess.on('error', (): void => {
+            this.log('error')
+        })
+
+        this.eProcess.on('exit', (): void => {
+            this.log('exit')
+        })
+
+        this.eProcess.on('message', (): void => {
+            this.log('message')
+        })
     }
 
     private buildElectron = async () => {
