@@ -11,6 +11,7 @@ export default {
             file: pkg.main,
             format: 'cjs',
             exports: 'named',
+            outro: 'module.exports = Object.assign({}, module.exports, exports)',
             sourcemap: true,
         },
         {
@@ -23,17 +24,7 @@ export default {
     plugins: [
         external(),
         typescript({
-            useTsconfigDeclarationDir: true,
             tsconfig: './tsconfig.json',
-            tsconfigOverride: {
-                declaration: true,
-                declarationDir: 'lib',
-                baseUrl: 'src',
-                paths: {
-                    '~/*': ['*'],
-                },
-                include: ['src'],
-            },
             rollupCommonJSResolveHack: true,
             clean: true,
         }),
