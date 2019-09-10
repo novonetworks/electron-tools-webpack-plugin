@@ -13,7 +13,7 @@ const isDevelopment = process.env.NODE_ENV === 'development'
 // noinspection JSUnusedGlobalSymbols
 export default class ElectronToolsWebpackPlugin implements Plugin {
     private compiler: Compiler
-    private config: any
+    private config: any = {}
     private eProcess: any
 
     constructor(options: Options) {
