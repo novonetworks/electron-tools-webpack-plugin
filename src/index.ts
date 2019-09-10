@@ -59,25 +59,9 @@ export default class ElectronToolsWebpackPlugin implements Plugin {
             stdio: 'inherit',
         })
 
-        const disposable = this.eProcess.on(
-            'close',
-            (code: number, signal: string): void => {
-                this.log(`code: ${code}, signal: ${signal}`)
-                disposable()
-                process.kill(process.pid, signal)
-            },
-        )
-
-        /*
-        once(event: "close", listener: (code: number, signal: string) => void): this;
-        once(event: "disconnect", listener: () => void): this;
-        once(event: "error", listener: (err: Error) => void): this;
-        once(event: "exit", listener: (code: number | null, signal: string | null) => void): this;
-        once(event: "message", listener: (message: any, sendHandle: net.Socket | net.Server) => void): this;
-         */
-
-        this.eProcess.on('close', (): void => {
-            this.log('close')
+        this.eProcess.on('close', (code: number, signal: string): void => {
+            this.log(`close code: ${code}, signal: ${signal}`)
+            process.kill(process.pid, signal)
         })
 
         this.eProcess.on('disconnect', (): void => {
