@@ -4,7 +4,7 @@ interface Options {
     readonly args?: string[]
     readonly isDebug?: boolean
 }
-export declare class ElectronToolsWebpackPlugin implements Plugin {
+export default class ElectronToolsWebpackPlugin implements Plugin {
     private compiler
     private config
     private eProcess
@@ -16,4 +16,4 @@ export declare class ElectronToolsWebpackPlugin implements Plugin {
     private buildElectron
     private log
 }
-export default ElectronToolsWebpackPlugin
+export {}

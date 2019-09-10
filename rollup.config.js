@@ -11,7 +11,7 @@ export default {
             file: pkg.main,
             format: 'cjs',
             exports: 'named',
-            outro: 'module.exports = Object.assign({}, module.exports, exports)',
+            outro: 'module.exports = exports.default',
             sourcemap: true,
         },
         {

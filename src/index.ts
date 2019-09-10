@@ -10,7 +10,8 @@ interface Options {
 
 const isDevelopment = process.env.NODE_ENV === 'development'
 
-export class ElectronToolsWebpackPlugin implements Plugin {
+// noinspection JSUnusedGlobalSymbols
+export default class ElectronToolsWebpackPlugin implements Plugin {
     private compiler: Compiler
     private config: any
     private eProcess: any
@@ -71,6 +72,3 @@ export class ElectronToolsWebpackPlugin implements Plugin {
         this.config.isDebug && console.log(message, optionalParams)
     }
 }
-
-// noinspection JSUnusedGlobalSymbols
-export default ElectronToolsWebpackPlugin
