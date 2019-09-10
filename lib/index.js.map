@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/sub.ts","../src/index.ts"],"sourcesContent":["const message = 'Hello Module!'\nexport default message\n","import message from '~/sub'\n\nconsole.log(message)\n"],"names":[],"mappings":";;AAAA,IAAM,OAAO,GAAG,eAAe,CAAA;;ACE/B,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAA"}
