@@ -1,6 +1,6 @@
 {
     "name": "electron-tools-webpack-plugin",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "electron-tools-webpack-plugin",
     "repository": "https://github.com/novonetworks/electron-tools-webpack-plugin",
     "author": "Ryan Yang",
